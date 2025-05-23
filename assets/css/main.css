@@ -229,6 +229,8 @@ h6 {
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
+/* Complete Modified Header CSS */
+
 .header {
   color: var(--default-color);
   transition: all 0.5s;
@@ -236,86 +238,91 @@ h6 {
   background-color: var(--background-color);
 }
 
+/* Remove old topbar styles - now hidden */
 .header .topbar {
-  background-color: var(--background-color);
-  height: 40px;
-  padding: 0;
-  font-size: 14px;
-  transition: all 0.5s;
+  display: none;
 }
 
-.header .topbar .contact-info i {
-  font-style: normal;
-  color: var(--accent-color);
-}
-
-.header .topbar .contact-info i a,
-.header .topbar .contact-info i span {
-  padding-left: 5px;
-  color: var(--default-color);
-}
-
-@media (max-width: 575px) {
-
-  .header .topbar .contact-info i a,
-  .header .topbar .contact-info i span {
-    font-size: 13px;
-  }
-}
-
-.header .topbar .contact-info i a {
-  line-height: 0;
-  transition: 0.3s;
-  color: var(--default-color);
-}
-
-.header .topbar .contact-info i a:hover {
-  color: var(--default-color);
-  text-decoration: underline;
-}
-
-.header .topbar .social-links a {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  line-height: 0;
-  transition: 0.3s;
-  margin-left: 20px;
-}
-
-.header .topbar .social-links a:hover {
-  color: var(--accent-color);
-}
-
+/* Remove old branding styles - now handled by header-top */
 .header .branding {
-  min-height: 60px;
-  padding: 10px 0;
+  display: none;
 }
 
-.header .logo {
+/* New Header Top Black Section */
+.header-top {
+  background-color: #000000;
+  padding: 15px 0;
+  border-bottom: none;
+}
+
+.header-top .logo h1.sitename {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.header-top .logo {
+  text-decoration: none;
   line-height: 1;
 }
 
-.header .logo img {
-  max-height: 36px;
-  margin-right: 8px;
+/* Search Container Styles */
+.search-container {
+  position: relative;
 }
 
-.header .logo h1 {
-  font-size: 28px;
-  margin: 0;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--heading-color);
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  background-color: #333333;
+  border: 1px solid #555555;
+  border-radius: 25px;
+  color: #ffffff;
+  padding: 10px 45px 10px 20px;
+  width: 300px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #999999;
+}
+
+.search-input:focus {
+  background-color: #444444;
+  border-color: #777777;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  color: #999999;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.search-icon:hover {
+  color: #ffffff;
+}
+
+/* Navigation Section White Background */
+.nav-section {
+  background-color: #ffffff;
+  padding: 15px 0;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .scrolled .header {
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
-}
-
-.scrolled .header .topbar {
-  height: 0;
-  visibility: hidden;
-  overflow: hidden;
 }
 
 /*--------------------------------------------------------------
@@ -341,12 +348,13 @@ h6 {
 
   .navmenu a,
   .navmenu a:focus {
-    color: var(--nav-color);
-    padding: 18px 12px;
-    font-size: 14px;
+    color: #333333;
+    padding: 15px 20px;
+    font-size: 13px;
     font-family: var(--nav-font);
-    font-weight: Bold;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -369,7 +377,17 @@ h6 {
   .navmenu li:hover>a,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--nav-hover-color);
+    color: #000000;
+  }
+
+  /* Special styling for GEN AI link */
+  .navmenu .gen-ai-link {
+    color: #8b5cf6 !important;
+    font-weight: 600;
+  }
+
+  .navmenu .gen-ai-link:hover {
+    color: #7c3aed !important;
   }
 
   .navmenu .dropdown ul {
@@ -432,7 +450,7 @@ h6 {
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
-    color: var(--nav-color);
+    color: #333333;
     font-size: 28px;
     line-height: 0;
     margin-right: 10px;
@@ -553,6 +571,35 @@ h6 {
 
   .mobile-nav-active .navmenu>ul {
     display: block;
+  }
+
+  /* Mobile Search Adjustments */
+  .search-input {
+    width: 250px;
+  }
+}
+
+/* Tablet and Mobile Search Adjustments */
+@media (max-width: 768px) {
+  .search-input {
+    width: 200px;
+    font-size: 13px;
+    padding: 8px 35px 8px 15px;
+  }
+  
+  .header-top .logo h1.sitename {
+    font-size: 22px;
+  }
+}
+
+/* Small Mobile - Hide Search */
+@media (max-width: 576px) {
+  .search-container {
+    display: none;
+  }
+  
+  .header-top .logo h1.sitename {
+    font-size: 20px;
   }
 }
 
